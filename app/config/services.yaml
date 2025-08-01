@@ -30,5 +30,16 @@ services:
 
     App\Service\FileUploadService:
         arguments:
-            $storage: '@flysystem.s3.storage'
+            $storage: '@flysystem.storage.s3.storage'
+
+# AWS S3 Client for Flysystem
+    aws_s3_v3:
+        class: Aws\S3\S3Client
+        arguments:
+            -
+                version: 'latest'
+                region: '%env(AWS_REGION)%'
+                credentials:
+                    key: '%env(AWS_ACCESS_KEY_ID)%'
+                    secret: '%env(AWS_SECRET_ACCESS_KEY)%'
             

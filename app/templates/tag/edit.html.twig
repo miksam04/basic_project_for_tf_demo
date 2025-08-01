@@ -1,0 +1,21 @@
+{% extends 'tag/index.html.twig' %}
+
+{% block title %}{{ 'tag.edit.title'|trans }}{% endblock %}
+
+{% block content %}
+<div class="card mb-5">
+    <div class="card-header">
+        <h2>{{ 'tag.edit.title'|trans }}</h2>
+    </div>
+    <div class="card-body">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-success">{{ 'button.save_changes'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% block table %}
+    {{ parent() }}
+{% endblock %}
+{% endblock %}

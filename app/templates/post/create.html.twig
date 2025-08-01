@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'post.create'|trans }}{% endblock %}
+
+{% block body %}
+    <div style="margin-top: 75px;">
+        <h1>{{ 'post.create'|trans }}</h1>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">{{ 'button.create'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

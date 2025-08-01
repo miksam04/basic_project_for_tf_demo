@@ -1,0 +1,24 @@
+{% extends 'category/index.html.twig' %}
+
+{% block title %}{{ 'category.delete.title'|trans }}{% endblock %}
+
+{% block content %}
+<div class="card mb-5">
+    <div class="card-header">
+        <h2>{{ 'category.delete.title'|trans }}</h2>
+    </div>
+    <div class="card-body">
+        <p style="font-size: 2.25rem; font-weight: bold;">
+            {{ 'category.delete.confirmation'|trans }} <strong>{{ category.name }}</strong>?
+        </p>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <button type="submit" class="btn btn-danger">{{ 'button.delete'|trans }}</button>
+            <a href="{{ path('category_index') }}" class="btn btn-secondary">{{ 'button.cancel'|trans }}</a>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% block table %}
+    {{ parent() }}
+{% endblock %}
+{% endblock %}

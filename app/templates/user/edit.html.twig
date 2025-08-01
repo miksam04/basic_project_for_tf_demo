@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'user.edit.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center" style="margin-top: 6rem;">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">{{ 'user.edit.title'|trans }}</h4>
+            </div>
+            <div class="card-body">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {{ form_errors(form) }}
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{form_widget(form)}}
+                        <div class="form-text">{{ 'leave.blank'|trans }}</div>
+                    </div>
+                    <button type="submit" class="btn btn-success">{{ 'button.save_changes'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

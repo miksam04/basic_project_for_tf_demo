@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div style="margin-top: 6rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h1>{{ 'admin.edit.title'|trans }} {{ user.nickname }}</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-success">{{ 'button.save_changes'|trans }}</button>
+    {{ form_end(form) }}
+</div
+{% endblock %}

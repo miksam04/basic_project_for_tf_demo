@@ -1,0 +1,24 @@
+{% extends 'tag/index.html.twig' %}
+
+{% block title %}{{ 'tag.delete.title'|trans }}{% endblock %}
+
+{% block content %}
+<div class="card mb-5">
+    <div class="card-header">
+        <h2>{{ 'tag.delete.title'|trans }}</h2>
+    </div>
+    <div class="card-body">
+        <p style="font-size: 2.25rem; font-weight: bold;">
+            {{ 'tag.delete.confirmation'|trans({'%tag%': tag.title}) }}
+        </p>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <button type="submit" class="btn btn-danger">{{ 'button.delete_confirmation'|trans }}</button>
+            <a href="{{ path('tag_index', {page: tags.currentPageNumber}) }}" class="btn btn-secondary">{{ 'button.cancel'|trans }}</a>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% block table %}
+    {{ parent() }}
+{% endblock %}
+{% endblock %}

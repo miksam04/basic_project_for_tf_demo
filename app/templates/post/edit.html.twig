@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'post.edit'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">{{ 'post.edit'|trans }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_widget(form)}}
+                <div>
+                {% for image in post.images %}
+                    <img src="{{ asset('uploads/images/' ~ image.fileName) }}" style="max-width:100px;">
+                    <label>
+                        <input type="checkbox" name="delete_images[]" value="{{ image.id }}">
+                        {{
+    'post.delete_image'|trans({'%imageName%': image.fileName})
+                        }}
+                    </label>
+                </div>
+                {% endfor %}
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-primary">{{ 'button.save_changes'|trans }}</button>
+                    <a href="{{ cancel_url }}" class="btn btn-secondary">{{ 'button.cancel'|trans }}</a>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

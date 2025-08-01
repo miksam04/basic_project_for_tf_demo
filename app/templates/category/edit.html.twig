@@ -1,0 +1,22 @@
+{% extends 'category/index.html.twig' %}
+
+{% block title %}{{ 'category.edit.title'|trans }} - {{ 'site.title'|trans }}{% endblock %}
+
+{% block content %}
+<div class="card mb-5">
+    <div class="card-header">
+        <h2>{{ 'category.edit.title'|trans }}</h2>
+    </div>
+    <div class="card-body">
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            <button type="submit" class="btn btn-success">{{ 'button.save_changes'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<!-- Współdzielona tabela -->
+{% block table %}
+    {{ parent() }}
+{% endblock %}
+{% endblock %}

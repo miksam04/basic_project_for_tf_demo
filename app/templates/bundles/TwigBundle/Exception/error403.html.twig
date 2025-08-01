@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-top: 6rem;">{{ 'error.403.title'|trans }}</h1>
+
+    <p>
+        {{ 'error.403.message'|trans }} <a href="{{ path('post_index') }}">{{'error.403.homepage_link'|trans}}</a>.
+    </p>
+{% endblock %}

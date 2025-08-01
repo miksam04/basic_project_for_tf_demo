@@ -5,4 +5,3 @@ vendor
 .phpunit.result.cache
 .env
 .vscode
-check_code.result.cache

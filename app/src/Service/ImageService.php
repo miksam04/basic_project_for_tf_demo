@@ -29,7 +29,7 @@ class ImageService implements ImageServiceInterface
      * @param FileUploadServiceInterface $fileUploadService The service for handling file uploads
      * @param Filesystem                 $filesystem        The filesystem service for file operations
      */
-    public function __construct(private readonly ImageRepository $imageRepository, private readonly FileUploadServiceInterface $fileUploadService, private readonly Filesystem $filesystem)
+    public function __construct(private readonly ImageRepository $imageRepository, private readonly FileUploadServiceInterface $fileUploadService)
     {
     }
 
@@ -57,9 +57,8 @@ class ImageService implements ImageServiceInterface
     public function removeFile(Image $image): void
     {
         $filename = $image->getFileName();
-
         if (null !== $filename) {
-            $this->filesystem->remove($this->fileUploadService->getTargetDirectory().'/'.$filename);
+            $this->fileUploadService->delete($filename);
         }
     }
 }

@@ -28,7 +28,7 @@
                     {% if post.images is defined and post.images|length > 0 %}
                         <div class="mb-3">
                             {% for image in post.images %}
-                            <img src="{{ asset('uploads/images/' ~ image.fileName) }}" alt="{{ 'image.altText'|trans }}" class="img-fluid mb-2" style="max-width: 400px;">
+                            <img src="https://{{ getenv('AWS_BUCKET') }}.s3.{{ getenv('AWS_REGION') }}.amazonaws.com/{{ image.fileName }}" alt="{{ 'image.altText'|trans }}" class="img-fluid mb-2" style="max-width: 400px;">
                             {% endfor %}
                         </div>
                     {% endif %}

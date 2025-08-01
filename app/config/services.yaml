@@ -30,5 +30,5 @@ services:
 
     App\Service\FileUploadService:
         arguments:
-            $targetDirectory: '%images_directory%'
+            $storage: '@flysystem.s3.storage'
             

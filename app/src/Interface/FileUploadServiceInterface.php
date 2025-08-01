@@ -28,4 +28,29 @@ interface FileUploadServiceInterface
      * @return string The target directory path
      */
     public function getTargetDirectory(): string;
+
+    /**
+     * Delete a file from storage.
+     *
+     * @param string $fileName
+     * @return void
+     */
+    public function delete(string $fileName): void;
+
+    /**
+     * Download a file from storage (returns file contents as string).
+     *
+     * @param string $fileName
+     * @return string
+     */
+    public function download(string $fileName): string;
+
+    /**
+     * Replace (edit) a file in storage.
+     *
+     * @param string $fileName
+     * @param UploadedFile $file
+     * @return void
+     */
+    public function replace(string $fileName, UploadedFile $file): void;
 }

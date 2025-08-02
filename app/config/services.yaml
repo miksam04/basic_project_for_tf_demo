@@ -12,12 +12,12 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     # makes classes in src/ available to be used as services
+    App\:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    resource: '../src/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
@@ -29,7 +29,24 @@ services:
 
     App\Service\FileUploadService:
         arguments:
-            $storage: '@flysystem.storage.s3.storage'
+            $filesystem: '@flysystem.adapter.mys3_storage'
+
+    flysystem.adapter.mys3_storage:
+        class: League\Flysystem\AwsS3V3\AwsS3V3Adapter
+        arguments:
+            - '@aws_s3_v3.client'
+            - '%env(AWS_BUCKET)%'
+            - '' # optional prefix
+
+    aws_s3_v3.client:
+        class: Aws\S3\S3Client
+        arguments:
+            -
+                region: '%env(AWS_REGION)%'
+                version: 'latest'
+                credentials:
+                    key: '%env(AWS_KEY)%'
+                    secret: '%env(AWS_SECRET)%'
 
 # AWS S3 Client for Flysystem
     aws_s3_v3:

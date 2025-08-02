@@ -12,7 +12,7 @@
                     {{ form_widget(form)}}
                 <div>
                 {% for image in post.images %}
-                    <img src="https://{{ getenv('AWS_BUCKET') }}.s3.{{ getenv('AWS_REGION') }}.amazonaws.com/{{ image.fileName }}" style="max-width:100px;">
+                    <img src="https://{{ aws_bucket }}.s3.{{ aws_region }}.amazonaws.com/{{ image.fileName }}" style="max-width:100px;">
                     <label>
                         <input type="checkbox" name="delete_images[]" value="{{ image.id }}">
                         {{

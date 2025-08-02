@@ -29,13 +29,18 @@ services:
 
     App\Service\FileUploadService:
         arguments:
-            $filesystem: '@flysystem.adapter.mys3_storage'
+            $storage: '@mys3.storage'
+
+    mys3.storage:
+        class: League\Flysystem\Filesystem
+        arguments:
+            - '@flysystem.adapter.mys3_storage'
 
     flysystem.adapter.mys3_storage:
         class: League\Flysystem\AwsS3V3\AwsS3V3Adapter
         arguments:
             - '@aws_s3_v3.client'
-            - '%env(AWS_BUCKET)%'
+            - '%env(S3_BUCKET)%'
             - '' # optional prefix
 
     aws_s3_v3.client:
@@ -45,21 +50,5 @@ services:
                 region: '%env(AWS_REGION)%'
                 version: 'latest'
                 credentials:
-                    key: '%env(AWS_KEY)%'
-                    secret: '%env(AWS_SECRET)%'
-
-# AWS S3 Client for Flysystem
-    aws_s3_v3:
-        class: Aws\S3\S3Client
-        arguments:
-            -
-                version: 'latest'
-                region: '%env(AWS_REGION)%'
-                credentials:
                     key: '%env(AWS_ACCESS_KEY_ID)%'
                     secret: '%env(AWS_SECRET_ACCESS_KEY)%'
-    App\Service\S3Service:
-        arguments:
-            $s3Client: '@aws_s3_v3'
-            $bucket: '%env(AWS_BUCKET)%'
-            

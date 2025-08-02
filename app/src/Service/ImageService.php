@@ -61,4 +61,21 @@ class ImageService implements ImageServiceInterface
             $this->fileUploadService->delete($filename);
         }
     }
+
+    /**
+     * Get presigned URLs for all images in a post.
+     *
+     * @param Post $post The post entity
+     *
+     * @return array An array of presigned URLs
+     */
+    public function getPresignedUrlsForPost(Post $post): array
+    {
+        $presignedUrls = [];
+        foreach ($post->getImages() as $image) {
+            $presignedUrls[$image->getId()] = $this->fileUploadService->getPresignedUrl($image->getFileName());
+        }
+
+        return $presignedUrls;
+    }
 }

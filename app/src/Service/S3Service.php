@@ -41,4 +41,16 @@ class S3Service
             'Key'    => $key,
         ]);
     }
+
+    public function getPresignedUrl(string $key): string
+    {
+        $cmd = $this->s3Client->getCommand('GetObject', [
+            'Bucket' => $this->bucket,
+            'Key' => $key,
+        ]);
+
+        $request = $this->s3Client->createPresignedRequest($cmd, '+20 minutes');
+
+        return (string) $request->getUri();
+    }
 }

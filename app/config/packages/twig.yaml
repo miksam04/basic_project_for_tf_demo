@@ -2,8 +2,7 @@ twig:
     file_name_pattern: '*.twig'
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
-        images_directory: 'uploads/images/'
-        aws_bucket: '%env(AWS_BUCKET)%'
+        aws_bucket: '%env(S3_BUCKET)%'
         aws_region: '%env(AWS_REGION)%'
         
 when@test:

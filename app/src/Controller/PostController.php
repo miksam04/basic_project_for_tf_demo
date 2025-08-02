@@ -95,11 +95,14 @@ class PostController extends AbstractController
         $comment->setPost($post);
         $form = $this->createForm(CommentType::class, $comment);
 
+        $presignedUrls = $this->imageService->getPresignedUrlsForPost($post);
+
         return $this->render('post/show.html.twig', [
             'post' => $post,
             'comments' => $comments,
             'comment' => $comment,
             'comment_form' => $form->createView(),
+            'presignedUrls' => $presignedUrls,
         ]);
     }
 
@@ -193,11 +196,14 @@ class PostController extends AbstractController
             return $this->redirectToRoute('post_show', ['id' => $post->getId(), 'returnTo' => $returnToUrl]);
         }
 
+        $presignedUrls = $this->imageService->getPresignedUrlsForPost($post);
+
         return $this->render('post/edit.html.twig', [
             'form' => $form->createView(),
             'post' => $post,
             'categories' => $this->categoryService->getAllCategories(),
             'cancel_url' => $returnToUrl,
+            'presignedUrls' => $presignedUrls,
         ]);
     }
 

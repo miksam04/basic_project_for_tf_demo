@@ -121,4 +121,20 @@ class FileUploadService implements FileUploadServiceInterface
             throw new FileException('Could not replace the file in S3: ' . $e->getMessage());
         }
     }
+
+    /**
+     * Get a presigned URL for a file.
+     *
+     * @param string $fileName The name of the file
+     *
+     * @return string The presigned URL
+     */
+    public function getPresignedUrl(string $fileName): string
+    {
+        try {
+            return $this->storage->temporaryUrl($fileName, new \DateTimeImmutable('+15 minutes'));
+        } catch (\Throwable $e) {
+            throw new FileException('Could not get the presigned URL from S3: ' . $e->getMessage());
+        }
+    }
 }
